@@ -1,11 +1,9 @@
 ﻿using ByteBank.Core.Model;
 using ByteBank.Core.Repository;
 using ByteBank.Core.Service;
-using ByteBank.View.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -36,7 +34,7 @@ namespace ByteBank.View
 
             var inicio = DateTime.Now;
 
-            var byteBankProgress = new ByteBankProgress<string>(str => PgsProgresso.Value++);
+            var byteBankProgress = new Progress<string>(str => PgsProgresso.Value++);
             var resultado = await ConsolidarContas(contas, byteBankProgress);
             
             var fim = DateTime.Now;
