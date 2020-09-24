@@ -34,12 +34,19 @@ namespace ByteBank.View
 
             var inicio = DateTime.Now;
 
+            BtnCancelar.IsEnabled = true;
+
             var byteBankProgress = new Progress<string>(str => PgsProgresso.Value++);
             var resultado = await ConsolidarContas(contas, byteBankProgress);
             
             var fim = DateTime.Now;
             AtualizarView(resultado, fim - inicio);
             BtnProcessar.IsEnabled = true;
+        }
+
+        private void BtnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            BtnCancelar.IsEnabled = false;
         }
 
         private async Task<string[]> ConsolidarContas(IEnumerable<ContaCliente> contas, IProgress<string> reportadorDeProgresso)
